@@ -8,9 +8,9 @@ price_our = wb2.active
 
 
 def fill_price():
-    for article in price_our['E5':'E3947']:
+    for article in price_our['E5':'E3970']:
         art = str(article[0].value).strip()
-        for article2 in price_st['B4':'B4651']:
+        for article2 in price_st['B4':'B4706']:
             art2 = str(article2[0].value).strip()
             if art == art2:
                 price_our['G' + str(article[0].row)].value = str(price_st['B' + str(article2[0].row)].value).strip()
