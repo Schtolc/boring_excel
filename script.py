@@ -2,9 +2,15 @@
 
 import argparse
 import os
+import subprocess
 import time
 
 import openpyxl
+
+
+def convert(path, output_format):
+    subprocess.check_output(
+        ['/Applications/LibreOffice.app/Contents/MacOS/soffice', '--headless', '--convert-to', output_format, path])
 
 
 def fill_price(price_st, price_our, workbook, max_rows):
@@ -71,6 +77,8 @@ if __name__ == '__main__':
     parser.add_argument('--max-rows', dest='max_rows', default=10000, type=int,
                         help='максимальное количество артиклов в двух прайсах')
     args = parser.parse_args()
+
+    convert(args.path, 'xlsx')
 
     wb = openpyxl.load_workbook(os.path.expanduser(args.path))
     st = wb[args.st_name]
